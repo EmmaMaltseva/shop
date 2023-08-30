@@ -2,11 +2,12 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Items from "./components/Items";
+import Categories from "./components/Categories";
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
+    this.state = {                 /*для работы с состояниями */
       orders: [],
       items: [
         {
@@ -50,7 +51,7 @@ class App extends React.Component {
           price: '449.99'
         }
       ]
-    }
+    }  
     this.addToOrder = this.addToOrder.bind(this) /*дает возможность в методе addToOrder рабоатть с состояниями*/
     this.deleteOrder = this.deleteOrder.bind(this); /*Внутри метода можем работать с состояниями */
   }
@@ -59,6 +60,7 @@ class App extends React.Component {
     return (
       <div className="wrapper">
         <Header orders={this.state.orders} onDelete={this.deleteOrder}/> {/*Передаем массив orders в шапку для вывода на экран в корзине, метод для удаления записи*/}
+        <Categories />
         <Items items={this.state.items} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
         <Footer />
       </div>
