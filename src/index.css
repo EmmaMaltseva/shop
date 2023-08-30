@@ -56,23 +56,24 @@ header .shop-cart-button.active {
 }
 
 header .shop-cart {
-  position: absolute; /*позиционирование от шапки*/
+  position: absolute; /*позиционирование от шапки (header задали relative)*/
   top: 30px;
   right: 0;
   width: 450px;
-  min-height: 100px;
   background: #fafafa;
-  -webkit-box-shadow: 4px 5px 15px -7px #606060;
-  box-shadow: 4x 5px 15px -7px #606060;
+  -webkit-box-shadow: 6px 6px 15px 0px rgba(135,135,135,0.69);  /*box shadow generator*/
+  box-shadow: 6px 6px 15px 0px rgba(135,135,135,0.69);
   z-index: 1000;
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+header .shop-cart .empty-cart h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 header .shop-cart .item {
-  width: 100%;
-  padding: 20px;
-}
-
-header .shop-cart .item img{
   width: 100%;
   float: left;
   margin-bottom: 20px;
@@ -87,6 +88,11 @@ header .shop-cart .item img{
 header .shop-cart .item h2{
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+header .shop-cart .item b {
+  color: #606060;
+  font-weight: 600;
 }
 
 header .presentation {
@@ -175,7 +181,7 @@ main .add-to-cart {
 }
 
 main .add-to-cart:hover {
-  transform: scale(1.5) translateY(-5px);
+  transform: scale(1.5) translateX(-5px) translateY(-5px);
 }
 
 footer {
