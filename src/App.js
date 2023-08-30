@@ -52,16 +52,21 @@ class App extends React.Component {
       ]
     }
     this.addToOrder = this.addToOrder.bind(this) /*дает возможность в методе addToOrder рабоатть с состояниями*/
+    this.deleteOrder = this.deleteOrder.bind(this); /*Внутри метода можем работать с состояниями */
   }
 
   render() {
     return (
       <div className="wrapper">
-        <Header orders={this.state.orders}/> {/*Передаем массив orders в шапку для вывода на экран в корзине*/}
+        <Header orders={this.state.orders} onDelete={this.deleteOrder}/> {/*Передаем массив orders в шапку для вывода на экран в корзине, метод для удаления записи*/}
         <Items items={this.state.items} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
         <Footer />
       </div>
     );
+  }
+
+  deleteOrder(id) {
+    this.setState({orders: this.state.orders.filter(el => el.id !== id)})
   }
 
   addToOrder(item) {
