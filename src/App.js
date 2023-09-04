@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Items from "./components/Items";
 import Categories from "./components/Categories";
+import ShowFullItem from "./components/ShowFullItem";
 
 class App extends React.Component {
   constructor(props) {
@@ -51,12 +52,17 @@ class App extends React.Component {
           category: 'chairs',
           price: '449.99'
         }
-      ]
+      ],
+      showFullItem: false,
+      fullItem: {
+
+      }
     }  
     this.state.currentItems = this.state.items
     this.addToOrder = this.addToOrder.bind(this) /*дает возможность в методе addToOrder работать с состояниями*/
     this.deleteOrder = this.deleteOrder.bind(this); /*Внутри метода можем работать с состояниями */
     this.chooseCategory = this.chooseCategory.bind(this); /*Внутри метода можем работать с состояниями и this*/
+    this.onShowItem = this.onShowItem.bind(this); /*Внутри метода можем работать с состояниями и this*/
   }
 
   render() {
@@ -64,10 +70,16 @@ class App extends React.Component {
       <div className="wrapper">
         <Header orders={this.state.orders} onDelete={this.deleteOrder}/> {/*Передаем массив orders в шапку для вывода на экран в корзине, метод для удаления записи*/}
         <Categories chooseCategory={this.chooseCategory}/>
-        <Items items={this.state.currentItems} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
+        <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
+        {this.state.showFullItem && <ShowFullItem items={this.state.items}/>}
         <Footer />
       </div>
     );
+  }
+
+  onShowItem(item) {
+    this.setState({fullItem: item})
+    this.setState({showFullItem: !this.state.showFullItem})
   }
 
   chooseCategory(category) {
@@ -75,7 +87,7 @@ class App extends React.Component {
       this.setState({currentItems: this.state.items})
       return
     }
-    
+
     this.setState({
       currentItems: this.state.items.filter(el => el.category === category)
     })
