@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Магазин мебели React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Главна страница:
+
+![Screenshot_157](https://github.com/EmmaMaltseva/shop/assets/92587254/804cfc12-71a3-4648-9711-7e6de51d1e36)
+
+Сайт сосздан с целью изучения React Native по видеоурокам: https://www.youtube.com/watch?v=DqkGcI1r6fs&list=PL0lO_mIqDDFVfIjOW2NsBaDYXB_ZwDB0p
 
 ## Available Scripts
 
