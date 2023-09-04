@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props)
     this.state = {                 /*для работы с состояниями */
       orders: [],
+      currentItems: [],
       items: [
         {
           id: 1,
@@ -31,7 +32,7 @@ class App extends React.Component {
           title: 'Диван',
           img: 'sofa.avif',
           desc: 'Диван, окрашенный в бежевый цвет',
-          category: 'sofas',
+          category: 'sofa',
           price: '449.99'
         },
         {
@@ -39,7 +40,7 @@ class App extends React.Component {
           title: 'Лампа',
           img: 'lamp.avif',
           desc: 'Торшер, черный/белый, 59 "',
-          category: 'sofas',
+          category: 'light',
           price: '449.99'
         }, 
         {
@@ -47,24 +48,37 @@ class App extends React.Component {
           title: 'Стул белый',
           img: 'chair_white.avif',
           desc: 'Вращающееся кресло + подушка, белый/темно-серый',
-          category: 'sofas',
+          category: 'chairs',
           price: '449.99'
         }
       ]
     }  
-    this.addToOrder = this.addToOrder.bind(this) /*дает возможность в методе addToOrder рабоатть с состояниями*/
+    this.state.currentItems = this.state.items
+    this.addToOrder = this.addToOrder.bind(this) /*дает возможность в методе addToOrder работать с состояниями*/
     this.deleteOrder = this.deleteOrder.bind(this); /*Внутри метода можем работать с состояниями */
+    this.chooseCategory = this.chooseCategory.bind(this); /*Внутри метода можем работать с состояниями и this*/
   }
 
   render() {
     return (
       <div className="wrapper">
         <Header orders={this.state.orders} onDelete={this.deleteOrder}/> {/*Передаем массив orders в шапку для вывода на экран в корзине, метод для удаления записи*/}
-        <Categories />
-        <Items items={this.state.items} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
+        <Categories chooseCategory={this.chooseCategory}/>
+        <Items items={this.state.currentItems} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
         <Footer />
       </div>
     );
+  }
+
+  chooseCategory(category) {
+    if (category === 'all') {
+      this.setState({currentItems: this.state.items})
+      return
+    }
+    
+    this.setState({
+      currentItems: this.state.items.filter(el => el.category === category)
+    })
   }
 
   deleteOrder(id) {

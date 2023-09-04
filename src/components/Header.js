@@ -43,7 +43,7 @@ export default function Header(props) { /*прописываем, что Header 
             {props.orders.length > 0 ?
               showOrders(props) : showNothing()}
           </div>
-        )} {/*если cartOpen true, появляется окно с выбранными товарами(item)*/}
+        )} {/*если cartOpen true, появляется массив с выбранными товарами(item)*/}
       
       </div>
       <div className="presentation"></div>

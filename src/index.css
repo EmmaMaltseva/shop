@@ -160,10 +160,12 @@ header .presentation::before {
   margin-right: 15px;
   cursor: pointer;
   border: 1px solid transparent;
+  transition: all 500ms ease;
 }
 
 .categories div:hover {
   border: 1px solid #5d8e328c;
+  transform: scale(1.1);
 }
 
 main {
