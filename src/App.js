@@ -51,6 +51,14 @@ class App extends React.Component {
           desc: 'Вращающееся кресло + подушка, белый/темно-серый',
           category: 'chairs',
           price: '449.99'
+        },
+        {
+          id: 6,
+          title: 'Ковер',
+          img: 'rug.avif',
+          desc: 'Ковер с низким ворсом, многоцветный, 7 " 10 "x9 " 10"',
+          category: 'rug',
+          price: '169.99'
         }
       ],
       showFullItem: false,
@@ -71,15 +79,15 @@ class App extends React.Component {
         <Header orders={this.state.orders} onDelete={this.deleteOrder}/> {/*Передаем массив orders в шапку для вывода на экран в корзине, метод для удаления записи*/}
         <Categories chooseCategory={this.chooseCategory}/>
         <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/> {/*onAdd - новый пропс, свойство сами сделали, передаем его*/}
-        {this.state.showFullItem && <ShowFullItem items={this.state.items}/>}
+        {this.state.showFullItem && <ShowFullItem item={this.state.fullItem} onShowItem={this.onShowItem} onAdd={this.addToOrder}/>} {/*если состояние наше true то отображаем карточку товара */}
         <Footer />
       </div>
     );
   }
 
   onShowItem(item) {
-    this.setState({fullItem: item})
-    this.setState({showFullItem: !this.state.showFullItem})
+    this.setState({fullItem: item}) /*кладем в fullItem товар, на карточку которого нажали */
+    this.setState({showFullItem: !this.state.showFullItem}) /*Чтобы при клике у нас появлялась/исчезала карточка товара */
   }
 
   chooseCategory(category) {
@@ -101,7 +109,7 @@ class App extends React.Component {
     let isInArray = false
     this.state.orders.forEach(el => {
       if(el.id === item.id)
-        isInArray = true
+        isInArray = true /*если уже есть такая запись то мы ее не добавляем в orders */
     })
 
     if (!isInArray) 
