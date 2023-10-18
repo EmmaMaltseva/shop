@@ -168,6 +168,30 @@ header .presentation::before {
   transform: scale(1.1);
 }
 
+.full-item {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(0, 0, 0, 0.8);
+  z-index: 999;
+  overflow: auto;
+}
+
+.full-item::-webkit-scrollbar { /*убрать полосу прокрутки для элемента*/
+  width: 0; 
+}
+
+.full-item > div {
+  width: 600px;
+  position: relative;
+  margin: 3% auto;
+  padding: 40px 15px;
+  background: #fff;
+  border-radius: 9px;
+}
+
 main {
   display: flex;
   width: 100%;
@@ -184,12 +208,19 @@ main .item {
   padding-bottom: 20px;
 }
 
-main .item img,
-.full-item .item img {
+main img,
+.full-item img {
   width: 100%;
   border-radius: 10px 10px 0 0;
-  transition: transform 700ms;
+  transition: transform 500ms ease;
   cursor: pointer;
+}
+
+.full-item img {
+  width: 80%;
+  position: relative; 
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main .item img:hover,
@@ -197,8 +228,9 @@ main .item img:hover,
   transform: scale(1.05);
 }
 
-main h2, main p, main b,
-.full-item h2, .full-item p, .full-item b {
+main h2, .full-item h2,
+main p,  .full-item p,
+main b, .full-item b {
   margin: 10px 20px;
   color: #333;
 }
@@ -228,6 +260,16 @@ main .add-to-cart,
 main .add-to-cart:hover,
 .full-item .add-to-cart:hover {
   transform: scale(1.5) translateX(-5px) translateY(-5px);
+}
+
+.full-item .close-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  color: #000000;
+  cursor: pointer;
 }
 
 footer {

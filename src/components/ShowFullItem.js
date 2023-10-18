@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
+import { IoClose } from "react-icons/io5";
 
 export class ShowFullItem extends Component {
   render() {
     return (
       <div className='full-item'>
-        <img src={"./img/" + this.props.item.img} onClick={() => this.props.onShowItem(this.props.item)}/>
-        <h2>{this.props.item.title}</h2>
-        <p>{this.props.item.desc}</p>
-        <b>{this.props.item.price}$</b>
-        <div className='add-to-cart' onClick={() => this.props.onAdd(this.props.item)}>+</div> {/*При нажатии на кнопку +, вызываем метод добавления onAdd из App.js и передаем значение товара item */}
+        <div>
+          <IoClose className='close-icon' onClick={() => this.props.onShowItem(this.props.item)}/>
+          <img src={"./img/" + this.props.item.img} onClick={() => this.props.onShowItem(this.props.item)}/>
+          <h2>{this.props.item.title}</h2>
+          <p>{this.props.item.desc}</p>
+          <b>{this.props.item.price}$</b>
+          <div className='add-to-cart' onClick={() => this.props.onAdd(this.props.item)}>+</div> {/*При нажатии на кнопку +, вызываем метод добавления onAdd из App.js и передаем значение товара item */}
+        </div>
       </div>
     )
   }
